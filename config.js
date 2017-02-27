@@ -1,1 +1,1 @@
-var BASE_URI = 'https://2deviant.github.io/CrossFit/';
+var BASE_URI = 'https://2deviant.github.io/CrossFit/data/';
