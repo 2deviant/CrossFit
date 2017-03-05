@@ -38,7 +38,7 @@ select {
     border-radius: 5px;
 }
 
-select: hover {
+select:hover {
     border-color: #ccc;
     cursor: pointer;
 }
