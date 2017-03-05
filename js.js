@@ -143,7 +143,13 @@ function plot(data) {
     var plots = [percentile, histogram];
 
     var layout = {
-        title: wod_name + ' ' + demographic + ' ' + scaling,
+        title: 'CrossFit Open ' + wod_name + ' ' + demographic + ' ' + scaling + ' (' + (function() {
+            var sum = 0;
+            for(i in data['histogram']['y']) {
+                sum += data['histogram']['y'][i];
+            }
+            return sum.toString().replace(/(\d)(?=(\d{3})+$)/g, '$1,');
+        })() + ' athletes)',
         xaxis: {
             title: labels[workout]['x-axis-label'],
             range: [
@@ -167,14 +173,6 @@ function plot(data) {
     Plotly.newPlot('plot', plots, layout);
 
     // display miscellaneous data
-    $('total_athlete_count').innerHTML = (function() {
-        var sum = 0;
-        for(i in data['histogram']['y']) {
-            sum += data['histogram']['y'][i];
-        }
-        return sum.toString().replace(/(\d)(?=(\d{3})+$)/g, '$1,');
-    })();
-
     $('message').innerHTML = labels[workout]['message'];
 
 }
