@@ -4,6 +4,10 @@ var DEMOGRAPHICS_FILE = 'demographics.json';
 var labels = {};
 var loading = 0;
 var DONE_LOADING = 2;
+var SCALING = {
+    'rx': 'Rx',
+    'scaled': 'Scaled'
+};
 
 window.onload = function() {
 
@@ -41,6 +45,10 @@ function $(id) {
     return document.getElementById(id);
 }
 
+function _(name) {
+    return document.getElementsByName(name);
+}
+
 function cors(uri, processor) {
     var req = new XMLHttpRequest();
     req.open('GET', BASE_URI + uri, true);
@@ -73,7 +81,8 @@ function set_dropdown(id, data, error) {
 
 function activate_dropdowns() {
     $('workout').onchange =
-    $('scaling').onchange = 
+    _('scaling')[0].onchange = 
+    _('scaling')[1].onchange = 
     $('demographic').onchange = function() {
         render();
     }
@@ -84,7 +93,7 @@ function render() {
     // what are we plotting?
     var workout = $('workout').value;
     var demographic = $('demographic').value;
-    var scaling = $('scaling').value;
+    var scaling = document.querySelector('input[name="scaling"]:checked').value;
 
     // compose the file name
     var file_name = workout + '_' + demographic + '_' + scaling + '.json';
@@ -111,7 +120,7 @@ function plot(data) {
     var workout = $('workout').value;
     var wod_name = $('workout').selectedOptions[0].innerHTML;
     var demographic = $('demographic').selectedOptions[0].innerHTML;
-    var scaling = $('scaling').selectedOptions[0].innerHTML;
+    var scaling = SCALING[document.querySelector('input[name="scaling"]:checked').value];
 
     var percentile = {
         x: data['percentile']['x'],
@@ -119,8 +128,9 @@ function plot(data) {
         showlegend: false,
         name: labels[workout]['percentile']['y-axis-label'],
         yaxis: 'y2',
-        mode: 'lines',
+        type: 'lines',
         line: {
+            color: 'rgb(0, 0, 128)',
             width: 5
         }
     };
@@ -135,6 +145,9 @@ function plot(data) {
         showlegend: false,
         name: labels[workout]['histogram']['y-axis-label'],
         type: 'bar',
+        marker: {
+            color: 'rgb(128, 0, 0)'
+        }
     };
 
     var plots = [percentile, histogram];
@@ -147,22 +160,41 @@ function plot(data) {
             }
             return sum.toString().replace(/(\d)(?=(\d{3})+$)/g, '$1,');
         })() + ' athletes)',
+        font: {
+            family: 'Raleway,Palatino,Garamond',
+            size: 20
+        },
         xaxis: {
             title: labels[workout]['x-axis-label'],
+            tickfont: {
+                family: 'helvetica',
+                size: 14
+            },
             range: [
                 data['histogram']['x'][0], 
                 data['histogram']['x'][data['histogram']['x'].length - 1]
-            ],
+            ]
         },
         yaxis2: {
             title: labels[workout]['percentile']['y-axis-label'],
+            tickfont: {
+                family: 'helvetica',
+                size: 14
+            },
             showgrid: false,
             overlaying: 'y',
-            range: [0, 105]
+            color: 'rgb(0, 0, 128)',
+            range: [.1, 105]
         },
         yaxis: {
             title: labels[workout]['histogram']['y-axis-label'],
+            tickfont: {
+                family: 'helvetica',
+                bold: true,
+                size: 14
+            },
             side: 'right',
+            color: 'rgb(128, 0, 0)',
             range: [0,]
         }
     };

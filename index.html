@@ -8,8 +8,6 @@
         <link href='css.css' rel='stylesheet'/>
     </head>
     <body>
-        <div id='plot'>
-        </div>
         <div id='selectors'>
             <span id='selector_label'>
                 CrossFit Open
@@ -18,10 +16,10 @@
             </select>
             <select id='demographic'>
             </select>
-            <select id='scaling'>
-                <option value='rx' SELECTED>Rx</option>
-                <option value='scaled'>Scaled</option>
-            </select>
+            <input type='radio' name='scaling' id='scaling_rx' value='rx' checked><label for='scaling_rx'>Rx</label>
+            <input type='radio' name='scaling' id='scaling_scaled' value='scaled'><label for='scaling_scaled'>Scaled</label>
+        </div>
+        <div id='plot'>
         </div>
         <div id='data'>
             <div id='message'>
