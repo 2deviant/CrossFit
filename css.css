@@ -5,5 +5,25 @@
 #plot {
     min-width:768px;
     width:100%;
-    height:600px;
+    height:512px;
 }
+
+#selectors, select {
+    font:16pt tahoma;
+}
+
+#selectors {
+    text-align:center;
+}
+
+select {
+    border:3px #eee solid;
+    background:#eee;
+    border-radius:5px;
+}
+
+select:hover {
+    border-color:#ccc;
+    cursor:pointer;
+}
+
