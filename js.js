@@ -1,25 +1,22 @@
-var LABELS_FILE = 'labels.json';
 var WORKOUTS_FILE = 'workouts.json';
 var DEMOGRAPHICS_FILE = 'demographics.json';
 
 var labels = {};
 var loading = 0;
-var DONE_LOADING = 3;
+var DONE_LOADING = 2;
 
 window.onload = function() {
 
-    // populate the plot label dictionary
-    cors(LABELS_FILE, function(data, error) {
-        labels = data;
-        loading++;
-    });
-
-    // populate the plot selectors
     cors(WORKOUTS_FILE, function(data, error) {
-        loading++;
+        // store workout specifics in a dictionary
+        for(i in data)
+            labels[data[i].file] = data[i];
+        // populate the workout drop-down
         set_dropdown('workout', data, error);
+        loading++;
     });
 
+    // populate the demographics drop-down
     cors(DEMOGRAPHICS_FILE, function(data, error) {
         set_dropdown('demographic', data, error);
         loading++;
@@ -63,7 +60,7 @@ function cors(uri, processor) {
 function set_dropdown(id, data, error) {
     if(!error) {
         var dropdown = $(id);
-        for(var i = 0; i < data.length; i++) {
+        for(var i in data) {
             var option = document.createElement('option');
             option.innerHTML = data[i]['name'];
             option.value = data[i]['file'];
@@ -93,7 +90,7 @@ function render() {
     var file_name = workout + '_' + demographic + '_' + scaling + '.json';
 
     // set the "loading..." message
-    $('plot').classList.add('loading');
+    document.body.classList.add('loading');
 
     // load the data
     cors(file_name, function(data, error) {
@@ -101,7 +98,7 @@ function render() {
             plot(data);
         } else {
             // turn off the "loading..." message
-            $('plot').classList.remove('loading');
+            document.body.classList.remove('loading');
             alert("Something didn't load right.  Please reload.");
         }
 
@@ -145,7 +142,7 @@ function plot(data) {
     var layout = {
         title: 'CrossFit Open ' + wod_name + ' ' + demographic + ' ' + scaling + ' (' + (function() {
             var sum = 0;
-            for(i in data['histogram']['y']) {
+            for(var i in data['histogram']['y']) {
                 sum += data['histogram']['y'][i];
             }
             return sum.toString().replace(/(\d)(?=(\d{3})+$)/g, '$1,');
@@ -174,5 +171,8 @@ function plot(data) {
 
     // display miscellaneous data
     $('message').innerHTML = labels[workout]['message'];
+
+    // turn off the "loading..." message
+    document.body.classList.remove('loading');
 
 }
