@@ -204,7 +204,7 @@ function plot(data) {
             },
             side: 'right',
             color: 'rgb(128, 0, 0)',
-            range: [0,]
+            range: [2, Math.max.apply(null, data['histogram']['y'])]
         }
     };
 
