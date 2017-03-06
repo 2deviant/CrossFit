@@ -17,12 +17,15 @@ window.onload = function() {
             labels[data[i].file] = data[i];
         // populate the workout drop-down
         set_dropdown('workout', data, error);
+        // increment the loading progress
         loading++;
     });
 
     // populate the demographics drop-down
     cors(DEMOGRAPHICS_FILE, function(data, error) {
+        // populate the demographic drop-down
         set_dropdown('demographic', data, error);
+        // increment the loading progress
         loading++;
     });
 
@@ -38,7 +41,6 @@ window.onload = function() {
 
     }
     first_render();
-
 }
 
 function $(id) {
@@ -152,6 +154,24 @@ function plot(data) {
 
     var plots = [percentile, histogram];
 
+    x_axis = {
+        title: labels[workout]['x-axis-label'],
+        separatethousands: true,
+        tickfont: {
+            family: 'helvetica',
+            size: 14
+        },
+        range: [
+            data['histogram']['x'][0], 
+            data['histogram']['x'][data['histogram']['x'].length - 1]
+        ]
+    };
+
+    if('x-axis-ticks' in labels[workout]) {
+        x_axis['tickvals'] = labels[workout]['x-axis-ticks']['values'];
+        x_axis['ticktext'] = labels[workout]['x-axis-ticks']['ticks'];
+    }
+
     var layout = {
         title: 'CrossFit Open ' + wod_name + ' ' + demographic + ' ' + scaling + ' (' + (function() {
             var sum = 0;
@@ -164,17 +184,7 @@ function plot(data) {
             family: 'Raleway,Palatino,Garamond',
             size: 20
         },
-        xaxis: {
-            title: labels[workout]['x-axis-label'],
-            tickfont: {
-                family: 'helvetica',
-                size: 14
-            },
-            range: [
-                data['histogram']['x'][0], 
-                data['histogram']['x'][data['histogram']['x'].length - 1]
-            ]
-        },
+        xaxis: x_axis,
         yaxis2: {
             title: labels[workout]['percentile']['y-axis-label'],
             tickfont: {
@@ -190,7 +200,6 @@ function plot(data) {
             title: labels[workout]['histogram']['y-axis-label'],
             tickfont: {
                 family: 'helvetica',
-                bold: true,
                 size: 14
             },
             side: 'right',

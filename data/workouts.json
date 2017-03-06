@@ -8,6 +8,18 @@
         "histogram": {
             "y-axis-label": "Athlete Count"
         },
+        "x-axis-ticks": {
+            "values": [
+                540, 600, 660, 720, 780, 840, 900, 960, 1020, 1080, 1140, 1200,
+                1220, 1240, 1260, 1280, 1300, 1320, 1340, 1360, 1380, 1400
+            ],
+            "ticks": [
+                "9:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00",
+                "16:00", "17:00", "18:00", "19:00", "20:00",
+                "205reps", "185reps", "165reps", "145reps", "125reps", "105reps",
+                "85reps", "65reps", "45reps", "25reps"
+            ]
+        },
         "x-axis-label": "Score (in seconds) + unfinished reps",
         "message": "The score is normalized to the time it took an athlete to complete the workout in seconds, plus any infinished reps.  If an athlete completes the workout in 15:12, her score is 15*60+12=912.  If an athlete only completes 200 reps by the 20:00 time-cap, her score is 1200 (20min in seconds) + 25 (remaining reps) = 1225.<br/><br/>The discontinuous change in the distribution occurs at the time cap, 20min or 1200s.  The bar immediately above the 1200 mark is the last cohort of athletes who have completed the workout."
     }

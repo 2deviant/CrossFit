@@ -56,6 +56,9 @@ select:hover {
     text-align: justify;
     padding: 2em;
     font: 11pt helvetica;
-    color:#888;
+    color: #888;
 }
 
+#message:before {
+    content: "Only athletes who have entered their scores are analyzed. "
+}
