@@ -2,6 +2,7 @@
     {
         "name": "17.1",
         "file": "17.1",
+        "axes-flip": false,
         "percentile": {
             "y-axis-label": "Percentile"
         },
@@ -22,5 +23,22 @@
         },
         "x-axis-label": "Score (in seconds) + unfinished reps",
         "message": "The score is normalized to the time it took an athlete to complete the workout in seconds, plus any infinished reps.  If an athlete completes the workout in 15:12, her score is 15*60+12=912.  If an athlete only completes 200 reps by the 20:00 time-cap, her score is 1200 (20min in seconds) + 25 (remaining reps) = 1225.<br/><br/>The discontinuous change in the distribution occurs at the time cap, 20min or 1200s.  The bar immediately above the 1200 mark is the last cohort of athletes who have completed the workout."
+    },
+    {
+        "name": "17.2",
+        "file": "17.2",
+        "axes-flip": true,
+        "percentile": {
+            "y-axis-label": "Percentile"
+        },
+        "histogram": {
+            "y-axis-label": "Athlete Count"
+        },
+        "x-axis-ticks": {
+            "values": [10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130, 140, 150, 160, 170, 180, 190, 200, 210, 220],
+            "ticks": []
+        },
+        "x-axis-label": "Score (reps)",
+        "message": ""
     }
 ]

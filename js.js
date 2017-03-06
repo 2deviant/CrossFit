@@ -172,6 +172,11 @@ function plot(data) {
         x_axis['ticktext'] = labels[workout]['x-axis-ticks']['ticks'];
     }
 
+    var flipped_axes = {
+        true: 'left',
+        false: 'right'
+    };
+
     var layout = {
         title: 'CrossFit Open ' + wod_name + ' ' + demographic + ' ' + scaling + ' (' + (function() {
             var sum = 0;
@@ -192,6 +197,7 @@ function plot(data) {
                 size: 14
             },
             showgrid: false,
+            side: flipped_axes[!labels[workout]['axes-flip']],
             overlaying: 'y',
             color: 'rgb(0, 0, 128)',
             range: [.1, 105]
@@ -202,7 +208,7 @@ function plot(data) {
                 family: 'helvetica',
                 size: 14
             },
-            side: 'right',
+            side: flipped_axes[labels[workout]['axes-flip']],
             color: 'rgb(128, 0, 0)',
             range: [2, Math.max.apply(null, data['histogram']['y'])]
         }
