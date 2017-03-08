@@ -20,9 +20,10 @@
 
 #plot {
     min-width: 768px;
-    width: 100%;
+    width: 80%;
     height: 512px;
     font-weight:bold;
+    margin:0 auto;
 }
 
 #selectors, select {
@@ -31,34 +32,42 @@
 
 #selectors {
     text-align: center;
-    border-bottom:2px dashed #aaa;
-    padding-bottom:1em;
-    margin-bottom:1em;
+    padding-bottom: 1em;
+    margin-bottom: 1em;
+    background: #3d405b;
+    padding :1em;
+    color: #f4f1de;
 }
 
 select {
-    border: 3px #eee solid;
-    background: #eee;
+    border:0;
+    background: #f4f1de;
+    color: #3d405b;
     border-radius: 5px;
 }
 
-select:hover {
-    border-color: #ccc;
-    cursor: pointer;
+input[type="radio"] {
+
 }
 
 #message {
     width: 75%;
     margin: 1em auto;
-    background: #eee;
+    background: #3d405b;
     border-top-left-radius: 2em;
     border-bottom-right-radius: 2em;
     text-align: justify;
     padding: 2em;
     font: 11pt helvetica;
-    color: #888;
+    color: #f4f1de;
 }
 
 #message:before {
     content: "Only athletes who have entered their scores are analyzed. "
+}
+
+body {
+    background: #f4f1de;
+    color: #f4f1de;
+    margin: 0;
 }

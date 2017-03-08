@@ -11,14 +11,16 @@
         },
         "x-axis-ticks": {
             "values": [
+                300, 360, 420, 480,
                 540, 600, 660, 720, 780, 840, 900, 960, 1020, 1080, 1140, 1200,
-                1220, 1240, 1260, 1280, 1300, 1320, 1340, 1360, 1380, 1400
+                1240, 1280, 1320, 1360, 1400
             ],
             "ticks": [
+                "5:00", "6:00", "7:00", "8:00",
                 "9:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00",
                 "16:00", "17:00", "18:00", "19:00", "20:00",
-                "205reps", "185reps", "165reps", "145reps", "125reps", "105reps",
-                "85reps", "65reps", "45reps", "25reps"
+                "185reps", "145reps", "105reps",
+                "65reps", "25reps"
             ]
         },
         "x-axis-label": "Score (in seconds) + unfinished reps",
@@ -39,6 +41,6 @@
             "ticks": []
         },
         "x-axis-label": "Score (reps)",
-        "message": ""
+        "message": "The discontinuous change at 79 reps, if present -- first round + 1 muscle up -- indicates a large fraction of the CrossFit community not having muscle ups."
     }
 ]

@@ -132,7 +132,7 @@ function plot(data) {
         yaxis: 'y2',
         type: 'lines',
         line: {
-            color: 'rgb(0, 0, 128)',
+            color: '#81b29a',
             width: 5
         }
     };
@@ -148,7 +148,7 @@ function plot(data) {
         name: labels[workout]['histogram']['y-axis-label'],
         type: 'bar',
         marker: {
-            color: 'rgb(128, 0, 0)'
+            color: '#e07a5f'
         }
     };
 
@@ -158,7 +158,7 @@ function plot(data) {
         title: labels[workout]['x-axis-label'],
         separatethousands: true,
         tickfont: {
-            family: 'helvetica',
+            family: 'courier',
             size: 14
         },
         range: [
@@ -178,6 +178,9 @@ function plot(data) {
     };
 
     var layout = {
+        plot_bgcolor: '#f4f1de',
+        paper_bgcolor: '#f4f1de',
+
         title: 'CrossFit Open ' + wod_name + ' ' + demographic + ' ' + scaling + ' (' + (function() {
             var sum = 0;
             for(var i in data['histogram']['y']) {
@@ -186,30 +189,30 @@ function plot(data) {
             return sum.toString().replace(/(\d)(?=(\d{3})+$)/g, '$1,');
         })() + ' athletes)',
         font: {
-            family: 'Raleway,Palatino,Garamond',
+            family: 'Courier',
             size: 20
         },
         xaxis: x_axis,
         yaxis2: {
             title: labels[workout]['percentile']['y-axis-label'],
             tickfont: {
-                family: 'helvetica',
+                family: 'courier',
                 size: 14
             },
             showgrid: false,
             side: flipped_axes[!labels[workout]['axes-flip']],
             overlaying: 'y',
-            color: 'rgb(0, 0, 128)',
+            color: '#81b29a',
             range: [.1, 105]
         },
         yaxis: {
             title: labels[workout]['histogram']['y-axis-label'],
             tickfont: {
-                family: 'helvetica',
+                family: 'courier',
                 size: 14
             },
             side: flipped_axes[labels[workout]['axes-flip']],
-            color: 'rgb(128, 0, 0)',
+            color: '#e07a5f',
             range: [2, Math.max.apply(null, data['histogram']['y'])]
         }
     };
