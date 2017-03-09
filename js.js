@@ -181,7 +181,7 @@ function plot(data) {
         plot_bgcolor: '#f4f1de',
         paper_bgcolor: '#f4f1de',
 
-        title: 'CrossFit Open ' + wod_name + ' ' + demographic + ' ' + scaling + ' (' + (function() {
+        title: wod_name + ' ' + demographic + ' ' + scaling + ' (' + (function() {
             var sum = 0;
             for(var i in data['histogram']['y']) {
                 sum += data['histogram']['y'][i];
