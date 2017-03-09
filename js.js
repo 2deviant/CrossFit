@@ -137,9 +137,6 @@ function plot(data) {
         }
     };
 
-    // align the histograms
-    data['histogram']['x'].shift();
-
     // prepare and display the plots
     var histogram = {
         x: data['histogram']['x'],
