@@ -44,6 +44,6 @@
             "ticks": []
         },
         "x-axis-label": "Score (reps)",
-        "message": "The discontinuous change at 79 reps, if present -- first round + 1 muscle up -- indicates a large fraction of the CrossFit community not having muscle ups."
+        "message": "The discontinuous change at 79 reps, if present -- 78 reps + 1 muscle up -- indicates a large fraction of the CrossFit community not having muscle ups."
     }
 ]
