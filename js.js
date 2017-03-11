@@ -149,6 +149,16 @@ function plot(data) {
         }
     };
 
+    // custom x-axis labels
+    if('x-axis-hover-function' in labels[workout]) {
+        var function_body = labels[workout]['x-axis-hover-function'];
+        eval('var map_function = ' + function_body + ';');
+        percentile['text'] = data['percentile']['x'].map(map_function);
+        percentile['hoverinfo'] = 'text+y';
+        histogram['hoverinfo'] = 'y';
+    }
+
+
     var plots = [percentile, histogram];
 
     x_axis = {
