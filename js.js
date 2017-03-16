@@ -1,9 +1,10 @@
+var REGIONS_FILE = 'regions.json';
 var WORKOUTS_FILE = 'workouts.json';
 var DEMOGRAPHICS_FILE = 'demographics.json';
 
 var labels = {};
 var loading = 0;
-var DONE_LOADING = 2;
+var DONE_LOADING = 3;
 var SCALING = {
     'rx': 'Rx',
     'scaled': 'Scaled'
@@ -25,6 +26,14 @@ window.onload = function() {
     cors(DEMOGRAPHICS_FILE, function(data, error) {
         // populate the demographic drop-down
         set_dropdown('demographic', data, error);
+        // increment the loading progress
+        loading++;
+    }
+    );
+    // populate the regions drop-down
+    cors(REGIONS_FILE, function(data, error) {
+        // populate the demographic drop-down
+        set_dropdown('region', data, error);
         // increment the loading progress
         loading++;
     });
@@ -83,6 +92,7 @@ function set_dropdown(id, data, error) {
 
 function activate_dropdowns() {
     $('workout').onchange =
+    $('region').onchange =
     _('scaling')[0].onchange = 
     _('scaling')[1].onchange = 
     $('demographic').onchange = function() {
@@ -94,11 +104,12 @@ function render() {
 
     // what are we plotting?
     var workout = $('workout').value;
+    var region = $('region').value;
     var demographic = $('demographic').value;
     var scaling = document.querySelector('input[name="scaling"]:checked').value;
 
     // compose the file name
-    var file_name = workout + '_' + demographic + '_' + scaling + '.json';
+    var file_name = workout + '_' + demographic + '_' + region + '_' + scaling + '.json';
 
     // set the "loading..." message
     document.body.classList.add('loading');
