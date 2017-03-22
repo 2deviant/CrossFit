@@ -172,6 +172,11 @@ function plot(data) {
 
     var plots = [percentile, histogram];
 
+    var x_axis_min = data['histogram']['x'][0];
+    if('x-axis-min' in labels[workout])
+        if(labels[workout]['x-axis-min'] > x_axis_min)
+            x_axis_min = labels[workout]['x-axis-min'];
+
     x_axis = {
         title: labels[workout]['x-axis-label'],
         separatethousands: true,
@@ -180,7 +185,7 @@ function plot(data) {
             size: 14
         },
         range: [
-            data['histogram']['x'][0], 
+            x_axis_min,
             data['histogram']['x'][data['histogram']['x'].length - 1]
         ]
     };
