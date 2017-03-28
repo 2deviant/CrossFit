@@ -13,17 +13,16 @@
             "values": [
                 300, 360, 420, 480,
                 540, 600, 660, 720, 780, 840, 900, 960, 1020, 1080, 1140, 1200,
-                1240, 1280, 1320, 1360, 1400
+                1230, 1275, 1320, 1365, 1410
             ],
             "ticks": [
                 "5:00", "6:00", "7:00", "8:00",
                 "9:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00",
                 "16:00", "17:00", "18:00", "19:00", "20:00",
-                "185", "145", "105",
-                "65", "25"
+                195, 150, 105, 60, 15
             ]
         },
-        "x-axis-hover-function":"function(x) { return 'Score: ' + (x <= 1200 ? Math.floor(x/60) + ':' + (x%60 > 10 ? '' : '0' ) +  x%60 : 225 - (x - 1200) + 'reps'); }",
+        "x-axis-hover-function":"function(x) { return 'Score: ' + (x <= 1200 ? Math.floor(x/60) + ':' + (x%60 < 10 ? '0' : '' ) +  x%60 : 225 - (x - 1200) + 'reps'); }",
         "x-axis-label": "time + unfinished reps",
         "message": "The score is normalized to the time it took an athlete to complete the workout in seconds, plus any infinished reps.  If an athlete completes the workout in 15:12, her score is 15*60+12=912.  If an athlete only completes 200 reps by the 20:00 time-cap, her score is 1200 (20min in seconds) + 25 (remaining reps) = 1225.<br/><br/>The discontinuous change in the distribution occurs at the time cap, 20min or 1200s.  The bar immediately above the 1200 mark is the last cohort of athletes who have completed the workout."
     },
@@ -74,7 +73,7 @@
         },
         "x-axis-min": 1440,
         "x-axis-label": "time (s) + unfinished reps",
-        "x-axis-hover-function":"function(x) { return 'Score: ' + (x <= 1440 ? Math.floor(x/60) + ':' + (x%60 > 10 ? '' : '0' ) +  x%60 : 216 - (x - 1440) + 'reps'); }",
+        "x-axis-hover-function":"function(x) { return 'Score: ' + (x <= 1440 ? Math.floor(x/60) + ':' + (x%60 < 10 ? '0' : '' ) +  x%60 : 216 - (x - 1440) + 'reps'); }",
         "message": ""
     },
     {
@@ -96,6 +95,39 @@
             ]
         },
         "x-axis-label": "Score (reps)",
+        "message": ""
+    },
+    {
+        "name": "17.5",
+        "file": "17.5",
+        "axes-flip": false,
+        "percentile": {
+            "y-axis-label": "Percentile"
+        },
+        "histogram": {
+            "y-axis-label": "Athlete Count"
+        },
+        "x-axis-ticks": {
+            "values": [
+                300, 360, 420, 480, 540, 600, 660, 720, 780, 840, 900, 960, 1020,
+                1080, 1140, 1200, 1260, 1320, 1380, 1440, 1500, 1560, 1620, 1680,
+                1740, 1800, 1860, 1920, 1980, 2040, 2100, 2160, 2220, 2280, 2340, 2400,
+                2460, 2520, 2580, 2640, 2700, 2760, 2820
+            ],
+            "ticks": [
+                "5:00", "6:00", "7:00", "8:00", "9:00",
+                "10:00", "11:00", "12:00", "13:00", "14:00",
+                "15:00", "16:00", "17:00", "18:00", "19:00",
+                "20:00", "21:00", "22:00", "23:00", "24:00",
+                "25:00", "26:00", "27:00", "28:00", "29:00",
+                "30:00", "31:00", "32:00", "33:00", "34:00",
+                "35:00", "36:00", "37:00", "38:00", "39:00",
+                "40:00",
+                380, 320, 260, 200, 140, 80, 20
+            ]
+        },
+        "x-axis-label": "time + unfinished reps",
+        "x-axis-hover-function":"function(x) { return 'Score: ' + (x <= 2400 ? Math.floor(x/60) + ':' + (x%60 < 10 ? '0' : '' ) +  x%60 : 440 - (x - 2400) + 'reps'); }",
         "message": ""
     }
 ]
